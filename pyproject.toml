@@ -1,0 +1,19 @@
+[project]
+name = "tracer"
+version = "0.1.0"
+description = "A Python library for tracing filesystem and network activity."
+authors = [
+  { name="Ahmed Gamea", email="ahmed.gamea@edu.eg" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "rich",     # if you use rich logs
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/yourname/tracer"

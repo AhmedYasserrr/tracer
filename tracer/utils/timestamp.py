@@ -26,7 +26,10 @@ def parse_iso(ts: str) -> datetime:
         return datetime.now(tz=timezone.utc) - timedelta(days=1)
 
     # Fall back to ISO format
-    return datetime.fromisoformat(ts)  # No change needed here, still valid.
+    try:
+        return datetime.fromisoformat(ts)  # No change needed here, still valid.
+    except ValueError:
+        raise ValueError(f"Invalid timestamp format: {ts}")
 
 def is_in_range(ts: Union[str, datetime], start: Optional[str], end: Optional[str]) -> bool:
     """Checks if a timestamp is in a given range (start and end optional)."""
