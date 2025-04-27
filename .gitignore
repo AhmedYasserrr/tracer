@@ -1,2 +1,5 @@
 # Ignore logs directory
 tracer/logs/
+dist/
+tracer.egg-info/
+__pycache__/
