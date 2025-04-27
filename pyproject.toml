@@ -8,14 +8,17 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-  "rich",     # if you use rich logs
+  "rich",     # For rich logs and CLI formatting
 ]
 
 [project.scripts]
-tracer = "tracer.cli:main"
+tracer = "tracer.cli:main" # CLI entry point
+
+[tool.setuptools]
+package-dir = {"" = "src"}
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
 [project.urls]

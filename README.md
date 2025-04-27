@@ -1,6 +1,6 @@
 # tracer
 
-A CLI tool for tracing. The project is designed to provide a modular and extensible tracer module. It includes tools for logging, tracing, and analyzing device behavior.
+A Python CLI tool and library for tracing filesystem and network activity. The project is designed to provide a modular and extensible tracer module. It includes tools for logging, tracing, and analyzing device behavior.
 
 ## Project Structure
 
@@ -36,7 +36,10 @@ tracer/
 
 ## Installation
 
-First, make sure you have **Python 3.10+** installed.
+### Prerequisites
+- Python 3.10 or higher
+- `pip` (Python package manager)
+
 
 1. **Clone the repository**:
 
@@ -45,13 +48,21 @@ First, make sure you have **Python 3.10+** installed.
    cd tracer
    ```
 
-2. **Install the package** locally:
+2. **Build the package**:
 
    ```bash
-   pip install .
+   python -m build
    ```
 
-This will install `tracer` and make its CLI available.
+   This will create a distributable package in the `dist/` directory.
+
+3. **Install the package**:
+
+   ```bash
+   pip install dist/tracer-0.1.0-py3-none-any.whl
+   ```
+
+This ensures a clean and reliable installation.
 
 ---
 
@@ -66,3 +77,15 @@ pip install -e .
 This allows you to freely edit the code and have changes take effect immediately without needing to reinstall.
 
 ---
+
+### Start Tracing
+Start tracing for a specific domain (e.g., `fs` for filesystem or `net` for network):
+```bash
+tracer start fs
+```
+
+### Print Logs
+Print logs for a specific domain, optionally filtering by time range:
+```bash
+tracer logs fs --start "yesterday" --end "now"
+```
