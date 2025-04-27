@@ -61,7 +61,7 @@ class FileTracer(BaseTracer):
             return
 
         event_details = {
-            "event_flags": [str(flag) for flag in event_flags],
+            "event_flags": [flag.name for flag in event_flags],
             "path": path,
             "name": event_name,
             "full_path": full_path,

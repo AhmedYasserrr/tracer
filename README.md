@@ -81,7 +81,7 @@ This allows you to freely edit the code and have changes take effect immediately
 ### Start Tracing
 Start tracing for a specific domain (e.g., `fs` for filesystem or `net` for network):
 ```bash
-tracer start fs
+tracer start fs --dir path/to/watch
 ```
 
 ### Print Logs
