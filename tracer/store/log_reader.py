@@ -10,7 +10,7 @@ class LogReader:
         # Initialize the LogReader with the log file path for the given domain
         self.file_path = get_log_file(domain)
 
-    def reverse_iter(self, start_time=None, end_time=None):
+    def read_logs_iter(self, start_time=None, end_time=None):
         """
         Yields log entries in reverse order, optionally filtered by a timestamp range.
 
@@ -74,7 +74,7 @@ class LogReader:
         table.add_column("Event", style="magenta")
 
         # Iterate over logs and add rows to the table
-        for event in self.reverse_iter(start_time, end_time):
+        for event in self.read_logs_iter(start_time, end_time):
             timestamp = event.get("timestamp", "N/A")
             event_copy = dict(event)  # Make a copy
             event_copy.pop("timestamp", None)  # Remove the timestamp

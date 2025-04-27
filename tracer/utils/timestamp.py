@@ -9,11 +9,11 @@ def now_iso() -> str:
     return datetime.now(tz=timezone.utc).isoformat()
 
 def parse_iso(ts: str) -> datetime:
-    """Parses ISO 8601 string or fuzzy time like '5m ago', 'yesterday'."""
+    """Parses ISO 8601 string or fuzzy time like '5m', 'yesterday'."""
     ts = ts.strip().lower()
 
     # Handle fuzzy inputs like '5m ago', '2h ago', etc.
-    match = re.match(r"(\d+)([smhd])\s*ago", ts)
+    match = re.match(r"(\d+)([smhd])", ts)
     if match:
         num, unit = match.groups()
         delta = _get_timedelta(int(num), unit)
