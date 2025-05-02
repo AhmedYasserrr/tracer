@@ -1,6 +1,7 @@
 from tracer.config import LogDomain
 from tracer.core.base_tracer import BaseTracer
 from tracer.core.fs_tracer import FileTracer
+from tracer.store.log_writer import LogWriter
 
 def start_tracing(domain: str, dir_to_watch: str = None):
     """Starts tracing for the specified domain."""
