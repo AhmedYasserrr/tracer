@@ -16,7 +16,7 @@ tracer/
     │   ├── base_tracer.py          # Abstract base class for tracers
     │   ├── file_tracer.py          # File system tracing logic
     │   ├── net_tracer.py           # Network tracing logic
-    │   └── future_tracer.py        # Placeholder for new domains
+    │   
     │
     ├── store/
     │   ├── __init__.py
@@ -29,7 +29,10 @@ tracer/
     │
     ├── logs/
     ├── config.py                   # Central config (e.g., paths, domains, etc.)
-    └── cli.py                      # (Optional) CLI interface to run tracers
+    ├── command_parser.py
+    ├── tracer_core.py              
+    ├── __init__.py
+    └── __main__.py                 # entry point     
 ```
 
 ---

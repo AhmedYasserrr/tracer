@@ -1,5 +1,6 @@
 from tracer.core.base_tracer import BaseTracer
 from tracer.store.log_writer import LogWriter
+from tracer.config import LogDomain
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import os
@@ -17,11 +18,10 @@ class WatchdogEventHandler(FileSystemEventHandler):
             return  # Skip events on the log file
 
         event_details = {
-            "event_type": event.event_type,
+            "event_flags": event.event_type,
+            "name": os.path.basename(full_path),
             "is_directory": event.is_directory,
             "full_path": full_path,
-            "name": os.path.basename(full_path),
-            #"path": os.path.dirname(full_path),
         }
 
         print(event_details)
@@ -29,7 +29,7 @@ class WatchdogEventHandler(FileSystemEventHandler):
 
 
 class FileTracer(BaseTracer):
-    def __init__(self, writer: LogWriter, dir_to_watch: str):
+    def __init__(self, domain: LogDomain, dir_to_watch: str):
         """
         Initialize the FileTracer.
 
@@ -37,10 +37,10 @@ class FileTracer(BaseTracer):
             writer (LogWriter): The log writer instance for appending events.
             dir_to_watch (str): The directory to monitor.
         """
-        super().__init__(writer)
+        super().__init__(domain)
         self.dir_to_watch = dir_to_watch
         self.log_file = self.writer.file_path
-        self.event_handler = WatchdogEventHandler(writer, self.log_file)
+        self.event_handler = WatchdogEventHandler(self.writer, self.log_file)
         self.observer = Observer()
 
     def start(self):

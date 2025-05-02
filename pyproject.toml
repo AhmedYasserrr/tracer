@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-tracer = "tracer.cli:main" # CLI entry point
+tracer = "tracer.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
