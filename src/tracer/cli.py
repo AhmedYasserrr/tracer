@@ -1,37 +1,6 @@
 import argparse
-from tracer.store.log_reader import LogReader
-from tracer.store.log_writer import LogWriter
 from tracer.config import LogDomain
-from tracer.core.base_tracer import BaseTracer
-from tracer.core.fs_tracer import FileTracer
 
-def start_tracing(domain: str, dir_to_watch: str = None):
-    """Starts tracing for the specified domain."""
-    if domain == "fs":
-        if not dir_to_watch:
-            print("Error: --dir is required for the 'fs' domain.")
-            return
-        print("Starting filesystem tracing...")
-        # Replace with actual FileTracer implementation
-        tracer = FileTracer(LogWriter(LogDomain.FS), dir_to_watch)
-        tracer.start()
-    elif domain == "net":
-        print("Starting network tracing...")
-        # Replace with actual NetTracer implementation
-        tracer = BaseTracer(LogWriter(LogDomain.NET))
-        tracer.start()
-    else:
-        print(f"Unknown domain: {domain}")
-
-def print_logs(domain: str, start_time: str = None, end_time: str = None):
-    """Prints logs for the specified domain and time range."""
-    log_domain = next((d for d in LogDomain if d.value == domain), None)
-    if log_domain is None:
-        print(f"Unknown domain: {domain}")
-        return
-
-    reader = LogReader(log_domain)
-    reader.print_logs(start_time, end_time)
 
 def main():
     parser = argparse.ArgumentParser(prog="tracer", description="CLI tool for tracing.")
@@ -72,11 +41,11 @@ def main():
     args = parser.parse_args()
 
     if args.command == "start":
+        from tracer.utils.cli_utils_tracing import start_tracing
         start_tracing(args.domain, args.dir)
     elif args.command == "logs":
+        from tracer.utils.cli_utils_logRW import print_logs
         print_logs(args.domain, args.start, args.end)
 
 if __name__ == "__main__":
     main()
-
-
