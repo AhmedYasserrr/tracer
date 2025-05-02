@@ -9,7 +9,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
   "rich",             # For rich logs and CLI formatting
-  "watchdog",   # For filesystem tracing
+  "inotify_simple",   # For filesystem tracing
 ]
 
 [project.scripts]
