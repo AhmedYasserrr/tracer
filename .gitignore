@@ -1,5 +1,6 @@
-logs/
 dist/
 tracer.egg-info/
 __pycache__/
 build/
+*.jsonl
+src/tracer/logs/
