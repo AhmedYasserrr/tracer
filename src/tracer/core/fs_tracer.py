@@ -21,7 +21,7 @@ class WatchdogEventHandler(FileSystemEventHandler):
             "is_directory": event.is_directory,
             "full_path": full_path,
             "name": os.path.basename(full_path),
-            "path": os.path.dirname(full_path),
+            #"path": os.path.dirname(full_path),
         }
 
         print(event_details)
