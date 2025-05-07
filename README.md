@@ -82,13 +82,13 @@ This allows you to freely edit the code and have changes take effect immediately
 ---
 
 ### Start Tracing
-Start tracing for a specific domain (e.g., `fs` for filesystem or `net` for network):
+Start tracing for a specific domain (e.g., `file_system` for filesystem or `networking` for network):
 ```bash
-tracer start fs --dir path/to/watch
+tracer start file_system --dir path/to/watch
 ```
 
 ### Print Logs
 Print logs for a specific domain, optionally filtering by time range:
 ```bash
-tracer logs fs --start "yesterday" --end "now"
+tracer logs file_system --start "yesterday" --end "now"
 ```

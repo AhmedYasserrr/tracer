@@ -18,7 +18,7 @@ class CommandParser:
             "-d", "--dir", 
             metavar="DIR", 
             required=False, 
-            help="Directory to watch (required for 'fs' domain)"
+            help="Directory to watch (required for 'file_system' domain)"
         )
 
         # Subcommand: logs

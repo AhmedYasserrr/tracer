@@ -9,15 +9,15 @@ class TracerCore:
 
     def start_tracing(self, domain: str, dir_to_watch: str = None):
         """Starts tracing for the specified domain."""
-        if domain == "fs":
+        if domain == LogDomain.FS:
             if not dir_to_watch:
-                print("Error: --dir is required for the 'fs' domain.")
+                print("Error: --dir is required for the 'file_system' domain.")
                 return
             print("Starting filesystem tracing...")
             # Replace with actual FileTracer implementation
             tracer = FileTracer(LogDomain.FS, dir_to_watch)
             tracer.start()
-        elif domain == "net":
+        elif domain == LogDomain.NET:
             print("Starting network tracing...")
             # Replace with actual NetTracer implementation
             tracer = BaseTracer(LogDomain.NET)
