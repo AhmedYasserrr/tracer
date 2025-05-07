@@ -11,8 +11,8 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Enum for log domains
 class LogDomain(Enum):
-    FS = "fs"
-    NET = "net"
+    FS = "file_system"
+    NET = "networking"
 
 # Function to get log file path for a specific domain
 def get_log_file(domain: LogDomain) -> Path:
