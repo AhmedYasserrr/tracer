@@ -1,4 +1,4 @@
-from tracer.command_parser import CommandParser
+from tracer import CommandParser
 def main():
     CommandParser().parse_args()
     

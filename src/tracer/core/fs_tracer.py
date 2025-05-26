@@ -1,6 +1,6 @@
-from tracer.core.base_tracer import BaseTracer
-from tracer.store.log_writer import LogWriter
-from tracer.config import LogDomain
+from tracer.core import BaseTracer
+from tracer.store import LogWriter
+from tracer import LogDomain
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import os
@@ -62,9 +62,9 @@ class FileTracer(BaseTracer):
         except Exception as e:
             print(f"An error occurred: {e}")
         finally:
-            self.cleanup()
+            self.stop()
 
-    def cleanup(self):
+    def stop(self):
         """
         Clean up resources and stop the observer.
         """

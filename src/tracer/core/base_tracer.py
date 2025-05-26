@@ -1,5 +1,5 @@
-from tracer.store.log_writer import LogWriter
-from tracer.config import LogDomain
+from tracer.store import LogWriter
+from tracer import LogDomain
 
 # Abstract base class for tracers
 class BaseTracer:
@@ -7,4 +7,7 @@ class BaseTracer:
         self.writer = LogWriter(domain)
 
     def start(self):
+        raise NotImplementedError
+    
+    def stop(self):
         raise NotImplementedError

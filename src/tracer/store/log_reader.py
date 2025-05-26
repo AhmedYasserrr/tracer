@@ -1,7 +1,7 @@
 import os
 import json
-from tracer.config import get_log_file, LogDomain
-from tracer.utils.timestamp import is_in_range
+from tracer import get_log_file, LogDomain
+from tracer.utils import is_in_range
 from rich.console import Console
 from rich.table import Table
 
