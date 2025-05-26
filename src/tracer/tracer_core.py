@@ -1,5 +1,5 @@
 from tracer.store import LogReader, LogWriter
-from tracer import LogDomain
+from tracer.config import LogDomain
 from tracer.core import BaseTracer
 from tracer.core import FileTracer
 from typing import Dict, Tuple

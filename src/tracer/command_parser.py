@@ -1,6 +1,6 @@
 import argparse
-from tracer import LogDomain
-from tracer import TracerCore
+from tracer.config import LogDomain
+from tracer.tracer_core import TracerCore
 
 class CommandParser:
     def __init__(self):
