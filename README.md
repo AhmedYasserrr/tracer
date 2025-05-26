@@ -87,18 +87,6 @@ Start tracing for a specific domain (e.g., `file_system` for filesystem or `netw
 tracer start file_system --dir path/to/watch
 ```
 
-### Stop Tracing
-Stop tracing for a specific domain:
-```bash
-tracer stop file_system --dir path/to/watch
-```
-
-### Show Status
-Show all active tracers:
-```bash
-tracer status
-```
-
 ### Show Logs
 Show logs for a specific domain, optionally filtering by time range:
 ```bash

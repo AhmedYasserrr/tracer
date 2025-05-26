@@ -13,6 +13,9 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 class LogDomain(Enum):
     FS = "file_system"
     NET = "networking"
+    
+    def __str__(self):
+        return self.value
 
 # Function to get log file path for a specific domain
 def get_log_file(domain: LogDomain) -> Path:

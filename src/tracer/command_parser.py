@@ -41,23 +41,6 @@ class CommandParser:
                  "(ISO format or fuzzy: now, yesterday, or [number][s/m/h/d])."
         )
 
-        # Subcommand: stop
-        self.stop_parser = self.subparsers.add_parser("stop", help="Stop tracing")
-        self.stop_parser.add_argument(
-            "domain",
-            choices=[d.value for d in LogDomain],
-            help="Domain to stop tracing"
-        )
-        self.stop_parser.add_argument(
-            "-d", "--dir",
-            metavar="DIR",
-            required=False,
-            help="Directory to stop watching (required for 'file_system' domain)"
-        )
-
-        # Subcommand: status
-        self.status_parser = self.subparsers.add_parser("status", help="Show active tracers")
-
         # Subcommand: clear
         self.clear_parser = self.subparsers.add_parser("clear", help="Clear logs")
         self.clear_parser.add_argument(
@@ -72,10 +55,6 @@ class CommandParser:
         
         if args.command == "start":
             tracer.start_tracing(args.domain, args.dir)
-        elif args.command == "stop":
-            tracer.stop_tracing(args.domain, args.dir)
-        elif args.command == "status":
-            tracer.show_tracing()
         elif args.command == "show":
             tracer.print_logs(args.domain, args.start, args.end)
         elif args.command == "clear":
