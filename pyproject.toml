@@ -10,6 +10,8 @@ requires-python = ">=3.10"
 dependencies = [
   "rich",             # For rich logs and CLI formatting
   "watchdog",   # For filesystem tracing
+  "sqlalchemy",
+  "mcp[cli]"
 ]
 
 [project.scripts]

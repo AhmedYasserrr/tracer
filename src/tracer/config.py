@@ -12,7 +12,7 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 # Enum for log domains
 class LogDomain(Enum):
     FS = "file_system"
-    NET = "networking"
+    NET = "network"
     
     def __str__(self):
         return self.value
@@ -27,3 +27,6 @@ def get_log_file(domain: LogDomain) -> Path:
 # Example usage
 FS_LOG_FILE = get_log_file(LogDomain.FS)
 NET_LOG_FILE = get_log_file(LogDomain.NET)
+
+
+DB_URL = f"sqlite:///{LOG_DIR}/tracer.db"
