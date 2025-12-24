@@ -16,8 +16,18 @@ tracer/
     │   ├── base_tracer.py          # Abstract base class for tracers
     │   ├── file_tracer.py          # File system tracing logic
     │   ├── net_tracer.py           # Network tracing logic
-    │   
     │
+    ├── mcp/   
+    │   ├── __init__.py
+    │   ├── server.py
+    │   ├── tools.py
+    │   └── resources.py
+    |
+    ├── db/
+    │   ├── __init__.py
+    │   ├── connection.py    # Engine setup, SessionLocal, and DB initialization
+    │   ├── models.py        # SQLAlchemy Declarative Models (your tables)
+    |
     ├── store/
     │   ├── __init__.py
     │   ├── log_writer.py           # Appending logs, maybe with rotation
@@ -82,7 +92,7 @@ This allows you to freely edit the code and have changes take effect immediately
 ---
 
 ### Start Tracing
-Start tracing for a specific domain (e.g., `file_system` for filesystem or `networking` for network):
+Start tracing for a specific domain (e.g., `file_system` for filesystem or `network` for network):
 ```bash
 tracer start file_system --dir path/to/watch
 ```
