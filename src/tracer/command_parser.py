@@ -1,6 +1,6 @@
 import argparse
+from typing import Sequence
 from tracer.config import LogDomain
-from tracer.tracer_core import TracerCore
 
 
 class CommandParser:
@@ -57,13 +57,5 @@ class CommandParser:
             help="Domain to clear logs for",
         )
 
-    def parse_args(self):
-        args = self.parser.parse_args()
-        tracer = TracerCore()
-
-        if args.command == "start":
-            tracer.start_tracing(args.domain, args.dir)
-        elif args.command == "show":
-            tracer.print_logs(args.domain, args.start, args.end)
-        elif args.command == "clear":
-            tracer.clear_logs(args.domain)
+    def parse_args(self, argv: Sequence[str] | None) -> argparse.Namespace:
+        return self.parser.parse_args(argv)
