@@ -7,7 +7,7 @@ from .timestamp import (
 )
 
 __all__ = [
-    'now_iso',
-    'parse_iso',
-    'is_in_range',
+    "now_iso",
+    "parse_iso",
+    "is_in_range",
 ]

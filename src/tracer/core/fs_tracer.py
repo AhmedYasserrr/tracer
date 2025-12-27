@@ -1,16 +1,19 @@
-from tracer.core import BaseTracer
-from tracer.store import LogWriter
-from tracer import LogDomain
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 import os
 import time
+from typing import Type
+from tracer.db.crud import BaseCRUD
+from tracer.core import BaseTracer
+from tracer.store import LogWriter
+from tracer import LogDomain
 
 
 class WatchdogEventHandler(FileSystemEventHandler):
-    def __init__(self, writer: LogWriter, log_file: str):
+    def __init__(self, writer: LogWriter, log_file: str, crud: Type[BaseCRUD]):
         self.writer = writer
         self.log_file = os.path.abspath(log_file)
+        self.crud = crud
 
     def dispatch(self, event: FileSystemEvent):
         full_path = os.path.abspath(event.src_path)
@@ -18,14 +21,16 @@ class WatchdogEventHandler(FileSystemEventHandler):
             return  # Skip events on the log file
 
         event_details = {
-            "event_flags": event.event_type,
+            "event": event.event_type,
             "name": os.path.basename(full_path),
             "is_directory": event.is_directory,
             "full_path": full_path,
         }
 
         print(event_details)
-        self.writer.append(event_details)
+        self.writer.append(event_details.copy())
+        with self.crud() as crud_instance:
+            crud_instance.add(event_details.copy())
 
 
 class FileTracer(BaseTracer):
@@ -40,7 +45,7 @@ class FileTracer(BaseTracer):
         super().__init__(domain)
         self.dir_to_watch = dir_to_watch
         self.log_file = self.writer.file_path
-        self.event_handler = WatchdogEventHandler(self.writer, self.log_file)
+        self.event_handler = WatchdogEventHandler(self.writer, self.log_file, self.crud)
         self.observer = Observer()
 
     def start(self):

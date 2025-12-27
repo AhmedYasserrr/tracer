@@ -4,6 +4,7 @@ from tracer.core import BaseTracer
 from tracer.core import FileTracer
 from typing import Dict, Tuple
 
+
 class TracerCore:
     def __init__(self):
         # Use tuple of (domain, path) as key for filesystem tracers
@@ -15,12 +16,14 @@ class TracerCore:
             if not dir_to_watch:
                 print("Error: --dir is required start filesystem tracing")
                 return
-            
+
             tracer_key = (domain, dir_to_watch)
             if tracer_key in self.active_tracers:
-                print(f"Tracing already active for {domain} in directory {dir_to_watch}")
+                print(
+                    f"Tracing already active for {domain} in directory {dir_to_watch}"
+                )
                 return
-                
+
             print("Starting filesystem tracing...")
             tracer = FileTracer(LogDomain.FS, dir_to_watch)
             tracer.start()
@@ -53,6 +56,6 @@ class TracerCore:
         if log_domain is None:
             print(f"Unknown domain: {domain}")
             return
-        
+
         writer = LogWriter(log_domain)
         writer.clear()
