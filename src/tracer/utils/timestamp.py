@@ -4,9 +4,11 @@ from typing import Optional, Union
 
 # ========== Helpers ==========
 
+
 def now_iso() -> str:
     """Returns current time in ISO format (UTC)."""
     return datetime.now(tz=timezone.utc).isoformat()
+
 
 def parse_iso(ts: str) -> datetime:
     """Parses ISO 8601 string or fuzzy time like '5m', 'yesterday'."""
@@ -31,7 +33,10 @@ def parse_iso(ts: str) -> datetime:
     except ValueError:
         raise ValueError(f"Invalid timestamp format: {ts}")
 
-def is_in_range(ts: Union[str, datetime], start: Optional[str], end: Optional[str]) -> bool:
+
+def is_in_range(
+    ts: Union[str, datetime], start: Optional[str], end: Optional[str]
+) -> bool:
     """Checks if a timestamp is in a given range (start and end optional)."""
     if isinstance(ts, str):
         ts = parse_iso(ts)
@@ -41,7 +46,9 @@ def is_in_range(ts: Union[str, datetime], start: Optional[str], end: Optional[st
         return False
     return True
 
+
 # ========== Internal ==========
+
 
 def _get_timedelta(num: int, unit: str) -> timedelta:
     """Helper to convert unit shorthand to timedelta."""

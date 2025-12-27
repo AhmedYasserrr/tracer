@@ -6,7 +6,7 @@ from tracer.config import LogDomain
 # Create the MCP server
 mcp = FastMCP(
     "Streamable HTTP Demo",
-    host="127.0.0.1", 
+    host="127.0.0.1",
     port=8080,
 )
 

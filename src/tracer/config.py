@@ -9,13 +9,15 @@ LOG_DIR = BASE_DIR / "logs"
 # Ensure the directory exists
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+
 # Enum for log domains
 class LogDomain(Enum):
     FS = "file_system"
     NET = "network"
-    
+
     def __str__(self):
         return self.value
+
 
 # Function to get log file path for a specific domain
 def get_log_file(domain: LogDomain) -> Path:
@@ -23,6 +25,7 @@ def get_log_file(domain: LogDomain) -> Path:
     if not log_file.exists():
         log_file.touch()  # Create if it doesn't exist
     return log_file
+
 
 # Example usage
 FS_LOG_FILE = get_log_file(LogDomain.FS)

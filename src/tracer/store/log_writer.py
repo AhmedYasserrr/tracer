@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from tracer import get_log_file, LogDomain
 
+
 class LogWriter:
     def __init__(self, domain: LogDomain):
         self.file_path = get_log_file(domain)
@@ -12,5 +13,6 @@ class LogWriter:
             f.write(json.dumps(event) + "\n")
 
     def clear(self):
+        """Clear all contents from the log file"""
         with open(self.file_path, "w", encoding="utf-8") as f:
-            pass
+            f.truncate(0)
