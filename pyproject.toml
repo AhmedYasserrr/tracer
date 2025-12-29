@@ -11,11 +11,13 @@ dependencies = [
   "rich",             # For rich logs and CLI formatting
   "watchdog",   # For filesystem tracing
   "sqlalchemy",
-  "mcp[cli]"
+  "mcp[cli]",
+  "pydantic"
 ]
 
 [project.scripts]
 tracer = "tracer.__main__:main"
+server = "tracer.server.mcp_server:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
