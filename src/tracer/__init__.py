@@ -6,7 +6,7 @@ with components for configuration, command parsing, and core tracing operations.
 """
 
 from .config import LogDomain, get_log_file
-from .command_parser import CommandParser
+from .cli.command_parser import CommandParser
 from .tracer_core import TracerCore
 
 __all__ = [
