@@ -1,6 +1,7 @@
 from typing import Type
 from tracer.db.crud.base_crud import BaseCRUD
 from tracer.db.crud.fs_crud import FileCRUD
+from tracer.db.crud.net_crud import NetCRUD
 from tracer.config import LogDomain
 
 
@@ -19,8 +20,10 @@ def get_crud_class(domain: LogDomain) -> Type[BaseCRUD]:
     """
     if domain == LogDomain.FS:
         return FileCRUD
+    elif domain == LogDomain.NET:
+        return NetCRUD
     else:
         raise ValueError(f"Unsupported domain: {domain}")
 
 
-__all__ = ["get_crud_class", "BaseCRUD", "FileCRUD"]
+__all__ = ["get_crud_class", "BaseCRUD", "FileCRUD", "NetCRUD"]

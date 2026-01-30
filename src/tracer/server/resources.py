@@ -1,5 +1,5 @@
 from sqlalchemy import inspect
-from tracer.db.models import FileLog
+from tracer.db.models import FileLog, NetworkLog
 
 
 def _generate_schema_description(model) -> str:
@@ -24,3 +24,8 @@ def _generate_schema_description(model) -> str:
 def get_filesystem_schema() -> str:
     """Returns the live schema for the filesystem logs directly from the DB model."""
     return _generate_schema_description(FileLog)
+
+
+def get_network_schema() -> str:
+    """Returns the live schema for the network metrics directly from the DB model."""
+    return _generate_schema_description(NetworkLog)

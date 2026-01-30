@@ -23,6 +23,7 @@ mcp.tool()(tools.drop_database)
 
 # --- Register Resources ---
 mcp.resource(f"schema://{LogDomain.FS}")(resources.get_filesystem_schema)
+mcp.resource(f"schema://{LogDomain.NET}")(resources.get_network_schema)
 
 
 def main():

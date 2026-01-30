@@ -39,8 +39,14 @@ def execute_sql_query(sql_query: str) -> str:
         return json.dumps({"status": "error", "message": f"SQL Error: {str(e)}"})
 
 
-def start_tracing(domain: str, directory: str = None) -> str:
-    """Starts tracing for the specified domain and optional directory."""
+def start_tracing(domain: str, directory: str = None, interval: int = 60) -> str:
+    """Starts tracing for the specified domain and optional directory.
+
+    Args:
+        domain: The tracing domain ('file_system' or 'network')
+        directory: Directory to watch (required for file_system domain)
+        interval: Interval in seconds for network metrics collection (default: 60)
+    """
     try:
         # Validate domain
         valid_domains = [d.value for d in LogDomain]
@@ -53,7 +59,7 @@ def start_tracing(domain: str, directory: str = None) -> str:
             )
 
         # TracerCore will handle validation and return success message
-        result = TracerCore.start_tracing(domain, directory)
+        result = TracerCore.start_tracing(domain, directory, interval)
         return json.dumps({"status": "success", "message": result})
 
     except Exception as e:

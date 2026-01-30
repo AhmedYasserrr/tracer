@@ -3,6 +3,7 @@ from tracer.store import LogReader, LogWriter
 from tracer.config import LogDomain
 from tracer.core import BaseTracer
 from tracer.core import FileTracer
+from tracer.core import NetTracer
 from typing import Dict, Tuple
 
 
@@ -12,7 +13,7 @@ class TracerCore:
     tracer_threads: Dict[Tuple[str, str], threading.Thread] = {}
 
     @staticmethod
-    def start_tracing(domain: str, dir_to_watch: str = None):
+    def start_tracing(domain: str, dir_to_watch: str = None, interval: int = 60):
         """Starts tracing for the specified domain."""
         if domain == LogDomain.FS.value:
             if not dir_to_watch:
@@ -41,12 +42,12 @@ class TracerCore:
             )
 
         elif domain == LogDomain.NET.value:
-            # Replace with actual NetTracer implementation
-            tracer = BaseTracer(LogDomain.NET)
             tracer_key = (domain, None)
 
             if tracer_key in TracerCore.active_tracers:
                 raise ValueError(f"Tracing already active for {domain}")
+
+            tracer = NetTracer(LogDomain.NET, interval=interval)
 
             # Create and start thread for tracing
             thread = threading.Thread(
@@ -58,7 +59,7 @@ class TracerCore:
 
             TracerCore.active_tracers[tracer_key] = tracer
             TracerCore.tracer_threads[tracer_key] = thread
-            return "Successfully started network tracing"
+            return f"Successfully started network tracing (interval: {interval}s)"
         else:
             raise ValueError(
                 f"Unknown domain: {domain}. Should be {LogDomain.FS.value} or {LogDomain.NET.value}"

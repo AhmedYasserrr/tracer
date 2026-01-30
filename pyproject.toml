@@ -12,7 +12,8 @@ dependencies = [
   "watchdog",   # For filesystem tracing
   "sqlalchemy",
   "mcp[cli]",
-  "pydantic"
+  "pydantic",
+  "psutil"      # For network metrics collection
 ]
 
 [project.scripts]
